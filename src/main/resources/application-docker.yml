@@ -1,4 +1,7 @@
 spring:
+  application:
+    name: taskmanager
+
   datasource:
     url: jdbc:mysql://mysql:3306/taskmanager?useSSL=false&allowPublicKeyRetrieval=true
     username: taskuser
@@ -6,18 +9,22 @@ spring:
     hikari:
       initialization-fail-timeout: 0
 
-  data:
-    redis:
-      host: redis
-      port: 6379
+  redis:
+    host: redis
+    port: 6379
+    timeout: 2000
 
   cache:
-    type: none
+    type: redis
 
   jpa:
     hibernate:
       ddl-auto: update
     open-in-view: false
+    show-sql: true
+
+server:
+  port: 8080
 
 jwt:
   secret: ${JWT_SECRET}
